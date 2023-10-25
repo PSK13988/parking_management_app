@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:parking_management_app/app_bloc_observer.dart';
 import 'package:parking_management_app/features/parking_mgmt/presentation/cubit/parking_cubit.dart';
 import 'package:parking_management_app/features/parking_mgmt/presentation/pages/parking_view.dart';
 import 'package:parking_management_app/injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = AppBlocObserver();
   await init();
   runApp(const MyApp());
 }
