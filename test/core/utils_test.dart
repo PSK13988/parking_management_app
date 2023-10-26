@@ -6,7 +6,7 @@ void main() {
     test('number should generation between given min & max range', () {
       final number = random(1, 5);
       expect(number, lessThan(5));
-      expect(number, greaterThan(1));
+      expect(number, greaterThanOrEqualTo(1));
     });
   });
 
@@ -14,7 +14,7 @@ void main() {
     test('should generate random number up to max range', () {
       final number = randomNumber(10);
       expect(number, lessThan(10));
-      expect(number, greaterThan(0));
+      expect(number, greaterThanOrEqualTo(0));
     });
   });
 }
