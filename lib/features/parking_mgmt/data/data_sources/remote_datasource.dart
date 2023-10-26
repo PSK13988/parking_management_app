@@ -1,14 +1,15 @@
 import 'package:http/http.dart' as http;
-import 'dart:math';
+import 'package:parking_management_app/features/parking_mgmt/config/configurations.dart';
 
 import 'package:parking_management_app/features/parking_mgmt/data/models/slot_model.dart';
+import 'package:parking_management_app/core/utils.dart';
 
 abstract class RemoteDataSource {
   const RemoteDataSource();
 
-  Future<SlotModel> getSlot();
+  Future<SlotModel> getSlot(VehicleType type);
 
-  Future<void> releaseSlot();
+  Future<bool> releaseSlot();
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -17,7 +18,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   final http.Client _client;
 
   @override
-  Future<SlotModel> getSlot() async {
+  Future<SlotModel> getSlot(VehicleType type) async {
     // Assuming, call getSlot REST api here which will return data
     // below json format
     // _client.get(
@@ -30,12 +31,18 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     //     },
     //   ),
     // );
-
-    return SlotModel(slot: '{ Slot : ${_random(1, 4)}-${_random(0, 1201)} }');
+    final floor = random(1, 4);
+    final bayId = random(0, 1201);
+    return SlotModel(
+      slot: '{ Slot : $floor-$bayId }',
+      floor: floor.toString(),
+      bayId: bayId.toString(),
+      type: type,
+    );
   }
 
   @override
-  Future<void> releaseSlot() async {
+  Future<bool> releaseSlot() async {
     // Assuming, call releaseSlot REST api here
     // _client.get(
     //   Uri.https(
@@ -48,7 +55,6 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     //   ),
     // );
     // when success it will return nothing
+    return true;
   }
-
-  int _random(int min, int max) => min + Random().nextInt(max - min);
 }

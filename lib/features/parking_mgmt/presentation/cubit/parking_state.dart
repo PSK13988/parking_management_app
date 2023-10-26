@@ -19,3 +19,5 @@ class ParkingOccupied extends ParkingState {
 } // Slot occupied
 
 class ParkingReleased extends ParkingState {} // Slot released
+
+class ParkingReleasedAll extends ParkingState {} // Slot released

@@ -18,11 +18,10 @@ void main() {
     test('should call ReleaseSlotUsecase, return nothing when successful',
         () async {
       // Arrange
-      when(() => repository.releaseSlot())
-          .thenAnswer((_) async => Future.value());
+      when(() => repository.releaseSlot()).thenAnswer((_) async => true);
 
       // Act
-      await usecase();
+      await usecase('');
 
       // Asset
       verify(() => repository.releaseSlot()).called(1);
