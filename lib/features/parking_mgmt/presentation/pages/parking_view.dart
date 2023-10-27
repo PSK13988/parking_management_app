@@ -54,6 +54,7 @@ class ParkingView extends StatelessWidget {
                               style: const TextStyle(fontSize: 18),
                             ),
                             trailing: InkWell(
+                              key: Key(item.slot),
                               onTap: () {
                                 context
                                     .read<ParkingCubit>()

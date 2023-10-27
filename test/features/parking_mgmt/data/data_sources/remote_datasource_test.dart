@@ -42,9 +42,10 @@ void main() {
       when(() => dataSource.releaseSlot()).thenAnswer((_) async => true);
 
       //Act
-      await dataSource.releaseSlot();
+      final result = await dataSource.releaseSlot();
 
       // Asset
+      expect(result, true);
       verify(() => dataSource.releaseSlot()).called(1);
       verifyNoMoreInteractions(dataSource);
     });

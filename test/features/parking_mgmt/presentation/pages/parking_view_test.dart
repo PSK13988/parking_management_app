@@ -53,22 +53,20 @@ void main() async {
       RootWidget(
         widget: BlocProvider(
           create: (context) => sl<ParkingCubit>()
-            ..occupiedSlot.add(
+            ..occupiedSlot.addAll([
               const Slot(
                 slot: 'slot',
                 floor: '2',
                 bayId: '100',
                 type: VehicleType.small,
               ),
-            )
-            ..occupiedSlot.add(
               const Slot(
                 slot: 'slot1',
                 floor: '3',
                 bayId: '1000',
                 type: VehicleType.large,
               ),
-            ),
+            ]),
           child: const ParkingView(),
         ),
       ),
@@ -81,7 +79,8 @@ void main() async {
     expect(find.image(const AssetImage(Assets.large)), findsOneWidget);
     expect(find.byIcon(Icons.delete_outline), findsNWidgets(2));
   });
-  testWidgets('$parkingViewTitle smoke test, get slot for small car',
+
+  testWidgets('$parkingViewTitle smoke test, get slot for all type cars',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       RootWidget(
@@ -124,5 +123,77 @@ void main() async {
     expect(find.image(const AssetImage(Assets.small)), findsOneWidget);
     expect(find.image(const AssetImage(Assets.large)), findsOneWidget);
     expect(find.byIcon(Icons.delete_outline), findsNWidgets(4));
+  });
+
+  testWidgets(
+      '$parkingViewTitle smoke test, clear all occupied slots on tap '
+      'of clear icon', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      RootWidget(
+        widget: BlocProvider(
+          create: (context) => sl<ParkingCubit>()
+            ..occupiedSlot.addAll([
+              const Slot(
+                slot: 'slot',
+                floor: '2',
+                bayId: '100',
+                type: VehicleType.small,
+              ),
+              const Slot(
+                slot: 'slot1',
+                floor: '3',
+                bayId: '1000',
+                type: VehicleType.large,
+              ),
+            ]),
+          child: const ParkingView(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.tap(find.byIcon(Icons.clear_all));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.byType(ListTile), findsNothing);
+    expect(find.image(const AssetImage(Assets.small)), findsNothing);
+    expect(find.image(const AssetImage(Assets.large)), findsNothing);
+    expect(find.byIcon(Icons.delete_outline), findsNothing);
+    expect(find.text(tapToGetParkingSlots), findsOneWidget);
+  });
+
+  testWidgets(
+      '$parkingViewTitle smoke test, release specific slot'
+      'of clear icon', (WidgetTester tester) async {
+    const key = 'slot1';
+
+    await tester.pumpWidget(
+      RootWidget(
+        widget: BlocProvider(
+          create: (context) => sl<ParkingCubit>()
+            ..occupiedSlot.addAll([
+              const Slot(
+                slot: 'slot',
+                floor: '2',
+                bayId: '100',
+                type: VehicleType.small,
+              ),
+              const Slot(
+                slot: key,
+                floor: '3',
+                bayId: '1000',
+                type: VehicleType.large,
+              ),
+            ]),
+          child: const ParkingView(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.tap(find.byKey(const Key(key)));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.byType(ListTile), findsOneWidget);
+    expect(find.image(const AssetImage(Assets.small)), findsOneWidget);
+    expect(find.image(const AssetImage(Assets.large)), findsNothing);
+    expect(find.byIcon(Icons.delete_outline), findsOneWidget);
+    expect(find.text(tapToGetParkingSlots), findsNothing);
   });
 }
