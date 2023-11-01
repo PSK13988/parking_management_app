@@ -87,10 +87,12 @@ class ParkingView extends StatelessWidget {
   void _showCarTypeDialog(BuildContext context) {
     VehicleType type = VehicleType.small;
     Widget cancelButton = TextButton(
+      key: const Key('dialogCancel'),
       child: const Text(btnCancel),
       onPressed: () => Navigator.pop(context),
     );
     Widget continueButton = TextButton(
+      key: const Key('dialogGetSlot'),
       child: const Text(btnGetSlot),
       onPressed: () {
         context.read<ParkingCubit>().startParking(type);

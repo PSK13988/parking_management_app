@@ -196,4 +196,55 @@ void main() async {
     expect(find.byIcon(Icons.delete_outline), findsOneWidget);
     expect(find.text(tapToGetParkingSlots), findsNothing);
   });
+
+  testWidgets('$parkingViewTitle smoke test, tap on floating Action button',
+      (WidgetTester tester) async {
+    const key = 'btnGetSlot';
+    const dialogGetSlot = 'dialogGetSlot';
+
+    await tester.pumpWidget(
+      RootWidget(
+        widget: BlocProvider(
+          create: (context) => sl<ParkingCubit>(),
+          child: const ParkingView(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.tap(find.byKey(const Key(key)));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.text('CANCEL'), findsOneWidget);
+    expect(find.text('GET SLOT'), findsNWidgets(2));
+    await tester.tap(find.byKey(const Key(dialogGetSlot)));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.byType(ListTile), findsOneWidget);
+    expect(find.image(const AssetImage(Assets.small)), findsOneWidget);
+    expect(find.byIcon(Icons.delete_outline), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.delete_outline));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.text(tapToGetParkingSlots), findsOneWidget);
+  });
+
+  testWidgets('$parkingViewTitle smoke test, tap on dialog cancel button',
+      (WidgetTester tester) async {
+    const key = 'btnGetSlot';
+    const dialogCancel = 'dialogCancel';
+
+    await tester.pumpWidget(
+      RootWidget(
+        widget: BlocProvider(
+          create: (context) => sl<ParkingCubit>(),
+          child: const ParkingView(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.tap(find.byKey(const Key(key)));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.text('CANCEL'), findsOneWidget);
+    expect(find.text('GET SLOT'), findsNWidgets(2));
+    await tester.tap(find.byKey(const Key(dialogCancel)));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.text(tapToGetParkingSlots), findsOneWidget);
+  });
 }

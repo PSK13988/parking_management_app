@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Fri Oct 27 09:50:16 2023</td>
+            <td class="headerValue">Wed Nov  1 22:28:20 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -84,12 +84,12 @@
 <a name="22"><span class="lineNum">      22 </span>            : </a>
 <a name="23"><span class="lineNum">      23 </span>            :   final occupiedSlot = &lt;Slot&gt;[];</a>
 <a name="24"><span class="lineNum">      24 </span>            : </a>
-<a name="25"><span class="lineNum">      25 </span><span class="lineCov">          1 :   void startParking(VehicleType type) async {</span></a>
-<a name="26"><span class="lineNum">      26 </span><span class="lineCov">          2 :     emit(ParkingInit());</span></a>
-<a name="27"><span class="lineNum">      27 </span><span class="lineCov">          2 :     final slot = await _getSlotUsecase(type);</span></a>
-<a name="28"><span class="lineNum">      28 </span><span class="lineCov">          1 :     await Future.delayed(const Duration(milliseconds: 500));</span></a>
-<a name="29"><span class="lineNum">      29 </span><span class="lineCov">          2 :     occupiedSlot.add(slot);</span></a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">          2 :     emit(ParkingOccupied(slot: slot));</span></a>
+<a name="25"><span class="lineNum">      25 </span><span class="lineCov">          2 :   void startParking(VehicleType type) async {</span></a>
+<a name="26"><span class="lineNum">      26 </span><span class="lineCov">          4 :     emit(ParkingInit());</span></a>
+<a name="27"><span class="lineNum">      27 </span><span class="lineCov">          4 :     final slot = await _getSlotUsecase(type);</span></a>
+<a name="28"><span class="lineNum">      28 </span><span class="lineCov">          2 :     await Future.delayed(const Duration(milliseconds: 500));</span></a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">          4 :     occupiedSlot.add(slot);</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">          4 :     emit(ParkingOccupied(slot: slot));</span></a>
 <a name="31"><span class="lineNum">      31 </span>            :   }</a>
 <a name="32"><span class="lineNum">      32 </span>            : </a>
 <a name="33"><span class="lineNum">      33 </span><span class="lineCov">          2 :   void releaseParking(String slot) async {</span></a>

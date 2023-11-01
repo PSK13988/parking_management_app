@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">3</td>
             <td class="headerCovTableEntry">10</td>
-            <td class="headerCovTableEntryLo">30.0 %</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Fri Oct 27 09:50:16 2023</td>
+            <td class="headerValue">Wed Nov  1 22:28:20 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -79,7 +79,7 @@
 <a name="17"><span class="lineNum">      17 </span>            : </a>
 <a name="18"><span class="lineNum">      18 </span>            :   final http.Client _client;</a>
 <a name="19"><span class="lineNum">      19 </span>            : </a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineNoCov">          0 :   @override</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">          1 :   @override</span></a>
 <a name="21"><span class="lineNum">      21 </span>            :   Future&lt;SlotModel&gt; getSlot(VehicleType type) async {</a>
 <a name="22"><span class="lineNum">      22 </span>            :     // Assuming, call getSlot REST api here which will return data</a>
 <a name="23"><span class="lineNum">      23 </span>            :     // below json format</a>
@@ -93,12 +93,12 @@
 <a name="31"><span class="lineNum">      31 </span>            :     //     },</a>
 <a name="32"><span class="lineNum">      32 </span>            :     //   ),</a>
 <a name="33"><span class="lineNum">      33 </span>            :     // );</a>
-<a name="34"><span class="lineNum">      34 </span><span class="lineNoCov">          0 :     final floor = random(1, 4);</span></a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineNoCov">          0 :     final bayId = random(0, 1201);</span></a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :     return SlotModel(</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :       slot: '{ Slot : $floor-$bayId }',</span></a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :       floor: floor.toString(),</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :       bayId: bayId.toString(),</span></a>
+<a name="34"><span class="lineNum">      34 </span><span class="lineCov">          1 :     final floor = random(1, 4);</span></a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineCov">          1 :     final bayId = random(0, 1201);</span></a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineCov">          1 :     return SlotModel(</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineCov">          1 :       slot: '{ Slot : $floor-$bayId }',</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">          1 :       floor: floor.toString(),</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          1 :       bayId: bayId.toString(),</span></a>
 <a name="40"><span class="lineNum">      40 </span>            :       type: type,</a>
 <a name="41"><span class="lineNum">      41 </span>            :     );</a>
 <a name="42"><span class="lineNum">      42 </span>            :   }</a>
