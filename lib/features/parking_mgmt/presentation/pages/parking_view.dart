@@ -29,7 +29,9 @@ class ParkingView extends StatelessWidget {
         child: BlocBuilder<ParkingCubit, ParkingState>(
           builder: (context, state) {
             return context.read<ParkingCubit>().occupiedSlot.isEmpty
-                ? const Center(child: TextWidget(tapToGetParkingSlots))
+                ? const Center(
+                    child: TextWidget(tapToGetParkingSlots),
+                  )
                 : ListView.builder(
                     shrinkWrap: true,
                     itemCount: context.read<ParkingCubit>().occupiedSlot.length,
