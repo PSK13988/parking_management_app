@@ -247,4 +247,75 @@ void main() async {
     await tester.pumpAndSettle(const Duration(seconds: 1));
     expect(find.text(tapToGetParkingSlots), findsOneWidget);
   });
+
+  testWidgets(
+      '$parkingViewTitle smoke test, Change vehicle type to any other XLARGE '
+      'type', (WidgetTester tester) async {
+    const key = 'btnGetSlot';
+    const dialogGetSlot = 'dialogGetSlot';
+
+    await tester.pumpWidget(
+      RootWidget(
+        widget: BlocProvider(
+          create: (context) => sl<ParkingCubit>(),
+          child: const ParkingView(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.tap(find.byKey(const Key(key)));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.text('CANCEL'), findsOneWidget);
+    expect(find.text('GET SLOT'), findsNWidgets(2));
+    expect(find.text(findSlot), findsOneWidget);
+    expect(find.text(vehicleType), findsOneWidget);
+    expect(find.text(VehicleType.small.name.toUpperCase()), findsNWidgets(2));
+    expect(find.text(VehicleType.large.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.medium.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.xlarge.name.toUpperCase()), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.arrow_drop_down).first);
+    await tester.pump();
+    await tester.tap(find.text('XLARGE').last);
+    await tester.pumpAndSettle();
+    expect(find.text(VehicleType.small.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.large.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.medium.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.xlarge.name.toUpperCase()), findsNWidgets(2));
+
+    await tester.tap(find.byIcon(Icons.arrow_drop_down).first);
+    await tester.pump();
+    await tester.tap(find.text('LARGE').last);
+    await tester.pumpAndSettle();
+    expect(find.text(VehicleType.small.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.xlarge.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.medium.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.large.name.toUpperCase()), findsNWidgets(2));
+
+    await tester.tap(find.byIcon(Icons.arrow_drop_down).first);
+    await tester.pump();
+    await tester.tap(find.text('SMALL').last);
+    await tester.pumpAndSettle();
+    expect(find.text(VehicleType.medium.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.xlarge.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.large.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.small.name.toUpperCase()), findsNWidgets(2));
+
+    await tester.tap(find.byIcon(Icons.arrow_drop_down).first);
+    await tester.pump();
+    await tester.tap(find.text('MEDIUM').last);
+    await tester.pumpAndSettle();
+    expect(find.text(VehicleType.small.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.xlarge.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.large.name.toUpperCase()), findsOneWidget);
+    expect(find.text(VehicleType.medium.name.toUpperCase()), findsNWidgets(2));
+
+    await tester.tap(find.byKey(const Key(dialogGetSlot)));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+
+    expect(find.image(const AssetImage(Assets.medium)), findsOneWidget);
+
+    expect(find.byType(ListTile), findsNWidgets(1));
+    expect(find.byIcon(Icons.delete_outline), findsNWidgets(1));
+  });
 }

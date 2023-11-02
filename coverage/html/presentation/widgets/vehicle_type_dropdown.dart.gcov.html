@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">15</td>
             <td class="headerCovTableEntry">19</td>
-            <td class="headerCovTableEntryMed">78.9 %</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Wed Nov  1 22:28:20 2023</td>
+            <td class="headerValue">Thu Nov  2 10:27:30 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -94,11 +94,11 @@
 <a name="32"><span class="lineNum">      32 </span>            :         const SizedBox(width: 10),</a>
 <a name="33"><span class="lineNum">      33 </span><span class="lineCov">          1 :         DropdownMenu&lt;String&gt;(</span></a>
 <a name="34"><span class="lineNum">      34 </span><span class="lineCov">          3 :           initialSelection: widget.items.first,</span></a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineNoCov">          0 :           onSelected: (String? value) {</span></a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :             setState(() {</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :               dropdownValue = value!;</span></a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineCov">          1 :           onSelected: (String? value) {</span></a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineCov">          2 :             setState(() {</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineCov">          1 :               dropdownValue = value!;</span></a>
 <a name="38"><span class="lineNum">      38 </span>            :             });</a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :             widget.onSelected.call(value!);</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          3 :             widget.onSelected.call(value!);</span></a>
 <a name="40"><span class="lineNum">      40 </span>            :           },</a>
 <a name="41"><span class="lineNum">      41 </span>            :           dropdownMenuEntries:</a>
 <a name="42"><span class="lineNum">      42 </span><span class="lineCov">          4 :               widget.items.map&lt;DropdownMenuEntry&lt;String&gt;&gt;((String value) {</span></a>
